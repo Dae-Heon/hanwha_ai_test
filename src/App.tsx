@@ -27,6 +27,21 @@ import {
   Info
 } from "lucide-react";
 
+export function HanwhaTricircle({ size = "md", animate = false }: { size?: "sm" | "md" | "lg"; animate?: boolean }) {
+  const scaleClass = size === "sm" ? "scale-75" : size === "lg" ? "scale-125" : "scale-100";
+  const animationClass = animate ? "animate-pulse" : "";
+  return (
+    <div className={`relative flex items-center justify-center w-10 h-10 ${scaleClass} ${animationClass} select-none shrink-0`}>
+      {/* Circle 1 - Left Bottom */}
+      <div className="absolute w-5 h-5 rounded-full bg-gradient-to-tr from-[#f37321] to-[#ff9843] opacity-80 -translate-x-1.5 translate-y-1 shadow-sm" />
+      {/* Circle 2 - Top Center */}
+      <div className="absolute w-5 h-5 rounded-full bg-gradient-to-tr from-[#ff4d00] to-[#f37321] opacity-90 -translate-y-1.5 shadow-sm" />
+      {/* Circle 3 - Right Bottom */}
+      <div className="absolute w-5 h-5 rounded-full bg-gradient-to-tr from-[#f59e0b] to-[#f37321] opacity-85 translate-x-1.5 translate-y-1 shadow-sm" />
+    </div>
+  );
+}
+
 export default function App() {
   // Main Data States
   const [plans, setPlans] = useState<ProductionPlan[]>([]);
@@ -221,9 +236,7 @@ export default function App() {
       <header className="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-tr from-orange-600 to-amber-500 p-2 rounded-lg text-white">
-              <ShieldAlert size={20} className="stroke-[2.5]" />
-            </div>
+            <HanwhaTricircle size="md" />
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-semibold tracking-wider text-orange-400 font-mono uppercase bg-orange-500/10 px-1.5 py-0.5 rounded">Hanwha Aerospace</span>
@@ -329,7 +342,11 @@ export default function App() {
             
             {/* Introductory Hero banner */}
             <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700 p-6 md:p-8 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-6 overflow-hidden relative border-l-4 border-l-hanwha-orange">
-              <div className="space-y-2 max-w-2xl">
+              {/* Decorative absolute background Tricircle */}
+              <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 opacity-10 blur-[1px] pointer-events-none scale-[3]">
+                <HanwhaTricircle size="lg" />
+              </div>
+              <div className="space-y-2 max-w-2xl relative z-10">
                 <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-semibold bg-hanwha-orange/10 text-hanwha-orange border border-hanwha-orange/20">
                   <Sparkles size={12} />
                   AI 기반 스마트 분석 관제
@@ -620,9 +637,9 @@ export default function App() {
       {/* Global Loading Spinner Backdrop */}
       {isLoading && (
         <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-xs flex flex-col items-center justify-center z-50">
-          <div className="relative flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full border-4 border-slate-800 border-t-hanwha-orange animate-spin"></div>
-            <ShieldAlert size={18} className="absolute text-hanwha-orange animate-pulse" />
+          <div className="relative flex items-center justify-center mb-4">
+            <div className="w-16 h-16 rounded-full border-4 border-slate-800 border-t-hanwha-orange animate-spin absolute"></div>
+            <HanwhaTricircle size="md" animate={true} />
           </div>
           <p className="text-xs font-bold text-hanwha-orange mt-4 animate-pulse">지능형 자재 수급 대조 분석기 가동 중...</p>
           <p className="text-[10px] text-slate-400 mt-1">사내 엑셀 구조 분석 및 동기화 매핑 중입니다.</p>

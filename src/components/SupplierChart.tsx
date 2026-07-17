@@ -43,20 +43,20 @@ export const SupplierChart: React.FC<SupplierChartProps> = ({ data }) => {
     }));
 
   const COLORS = [
-    "#dc2626", // Red-600
-    "#ea580c", // Orange-600
+    "#f37321", // Hanwha Orange
+    "#e11d48", // Rose-600
     "#d97706", // Amber-600
-    "#4f46e5", // Indigo-600
-    "#0d9488", // Teal-600
+    "#2563eb", // Blue-600
+    "#059669", // Emerald-600
     "#7c3aed"  // Violet-600
   ];
 
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-slate-900 text-white p-3 rounded-lg text-xs shadow-lg border border-slate-700 font-sans">
-          <p className="font-semibold mb-1">{payload[0].name}</p>
-          <p className="text-rose-400">부족 수량: <span className="font-mono">{payload[0].value} 개</span></p>
+        <div className="bg-white text-slate-800 p-3 rounded-lg text-xs shadow-md border border-slate-200 font-sans font-medium">
+          <p className="font-bold mb-1 text-slate-900">{payload[0].name}</p>
+          <p className="text-rose-600">부족 수량: <span className="font-mono font-bold">{payload[0].value} 개</span></p>
         </div>
       );
     }
@@ -66,11 +66,11 @@ export const SupplierChart: React.FC<SupplierChartProps> = ({ data }) => {
   const CustomBarTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-slate-900 text-white p-3 rounded-lg text-xs shadow-lg border border-slate-700 font-sans">
-          <p className="font-semibold mb-1.5">{payload[0].payload.name}</p>
-          <p className="text-indigo-300">필요 수량: <span className="font-mono">{payload[0].payload.required} 개</span></p>
-          <p className="text-emerald-300">입고 수량: <span className="font-mono">{payload[0].payload.delivered} 개</span></p>
-          <p className="text-rose-400 font-semibold mt-1">부족 수량: <span className="font-mono">{payload[0].payload.shortage} 개</span></p>
+        <div className="bg-white text-slate-800 p-3 rounded-lg text-xs shadow-md border border-slate-200 font-sans font-medium">
+          <p className="font-bold mb-1.5 text-slate-900">{payload[0].payload.name}</p>
+          <p className="text-blue-600 font-bold">필요 수량: <span className="font-mono">{payload[0].payload.required} 개</span></p>
+          <p className="text-emerald-600 font-bold">입고 수량: <span className="font-mono">{payload[0].payload.delivered} 개</span></p>
+          <p className="text-rose-600 font-extrabold mt-1">부족 수량: <span className="font-mono">{payload[0].payload.shortage} 개</span></p>
         </div>
       );
     }
@@ -80,14 +80,14 @@ export const SupplierChart: React.FC<SupplierChartProps> = ({ data }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Chart 1: Supplier Shortage Distribution */}
-      <div className="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-md flex flex-col h-[320px]">
+      <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col h-[320px]">
         <div className="mb-3">
-          <h3 className="text-sm font-semibold text-slate-100">협력사별 결품 비중 (부족 수량 합계 기준)</h3>
-          <p className="text-xs text-slate-400">현재 어느 공급업체에 납기 지연 수량이 집중되어 있는지 나타냅니다.</p>
+          <h3 className="text-sm font-bold text-slate-900">협력사별 결품 비중 (부족 수량 합계 기준)</h3>
+          <p className="text-xs text-slate-500 font-medium">현재 어느 공급업체에 납기 지연 수량이 집중되어 있는지 나타냅니다.</p>
         </div>
         <div className="flex-1 min-h-0 flex items-center justify-between">
           {pieData.length === 0 ? (
-            <div className="w-full text-center text-slate-500 text-sm py-12">
+            <div className="w-full text-center text-slate-400 font-medium text-xs py-12">
               결품 내역이 없습니다. (수급 매칭 완벽)
             </div>
           ) : (
@@ -126,10 +126,10 @@ export const SupplierChart: React.FC<SupplierChartProps> = ({ data }) => {
                           style={{ backgroundColor: COLORS[index % COLORS.length] }}
                         />
                         <div className="min-w-0 flex-1">
-                          <p className="font-medium text-slate-200 truncate" title={entry.name}>
+                          <p className="font-bold text-slate-800 truncate" title={entry.name}>
                             {entry.name}
                           </p>
-                          <p className="text-[10px] text-slate-400 font-mono">
+                          <p className="text-[10px] text-slate-500 font-mono font-medium">
                             {entry.value} 개 ({percentage}%)
                           </p>
                         </div>
@@ -137,7 +137,7 @@ export const SupplierChart: React.FC<SupplierChartProps> = ({ data }) => {
                     );
                   })}
                   {pieData.length > 5 && (
-                    <li className="text-[10px] text-slate-500 pl-5">
+                    <li className="text-[10px] text-slate-400 pl-5 font-medium">
                       외 {pieData.length - 5}개 업체 포함...
                     </li>
                   )}
@@ -149,14 +149,14 @@ export const SupplierChart: React.FC<SupplierChartProps> = ({ data }) => {
       </div>
 
       {/* Chart 2: Material Shortage Gap */}
-      <div className="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-md flex flex-col h-[320px]">
+      <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col h-[320px]">
         <div className="mb-3">
-          <h3 className="text-sm font-semibold text-slate-100">주요 지연 자재 수급 격차</h3>
-          <p className="text-xs text-slate-400">지연이 큰 자재들의 필요 목표 수량과 실제 입고수량의 격차를 비교합니다.</p>
+          <h3 className="text-sm font-bold text-slate-900">주요 지연 자재 수급 격차</h3>
+          <p className="text-xs text-slate-500 font-medium">지연이 큰 자재들의 필요 목표 수량과 실제 입고수량의 격차를 비교합니다.</p>
         </div>
         <div className="flex-1 min-h-0">
           {shortageItems.length === 0 ? (
-            <div className="w-full h-full flex items-center justify-center text-slate-500 text-sm py-12">
+            <div className="w-full h-full flex items-center justify-center text-slate-400 font-medium text-xs py-12">
               결품 내역이 없습니다. (수급 매칭 완벽)
             </div>
           ) : (
@@ -166,12 +166,12 @@ export const SupplierChart: React.FC<SupplierChartProps> = ({ data }) => {
                 margin={{ top: 10, right: 10, left: -20, bottom: 5 }}
                 barSize={16}
               >
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-                <XAxis dataKey="name" tick={{ fill: "#94a3b8", fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fill: "#94a3b8", fontSize: 10 }} axisLine={false} tickLine={false} />
-                <Tooltip content={<CustomBarTooltip />} cursor={{ fill: "rgba(30, 41, 59, 0.4)" }} />
-                <Legend iconSize={10} iconType="circle" wrapperStyle={{ fontSize: "11px", paddingTop: "10px", color: "#94a3b8" }} />
-                <Bar name="필요 수량" dataKey="required" fill="#3b82f6" radius={[2, 2, 0, 0]} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis dataKey="name" tick={{ fill: "#64748b", fontSize: 10 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: "#64748b", fontSize: 10 }} axisLine={false} tickLine={false} />
+                <Tooltip content={<CustomBarTooltip />} cursor={{ fill: "rgba(241, 245, 249, 0.6)" }} />
+                <Legend iconSize={10} iconType="circle" wrapperStyle={{ fontSize: "11px", paddingTop: "10px", color: "#64748b" }} />
+                <Bar name="필요 수량" dataKey="required" fill="#475569" radius={[2, 2, 0, 0]} />
                 <Bar name="입고 수량" dataKey="delivered" fill="#10b981" radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>

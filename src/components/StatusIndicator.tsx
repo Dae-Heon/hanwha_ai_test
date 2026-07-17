@@ -11,30 +11,30 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ status, delayD
   switch (status) {
     case "CRITICAL":
       return (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border text-xs font-semibold bg-red-500/10 text-red-400 border-red-500/20">
-          <AlertCircle size={12} className="animate-pulse" />
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[11px] font-semibold bg-rose-50 text-rose-600 border-rose-100">
+          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
           위험 (Critical)
         </span>
       );
     case "OVERDUE":
       return (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border text-xs font-semibold bg-orange-500/10 text-orange-400 border-orange-500/20">
-          <Clock size={12} />
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[11px] font-semibold bg-orange-50 text-orange-600 border-orange-100">
+          <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
           지연 (Overdue) {delayDays && delayDays > 0 ? `+${delayDays}일` : ""}
         </span>
       );
     case "WARNING":
       return (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border text-xs font-semibold bg-amber-500/10 text-amber-400 border-amber-500/20">
-          <AlertTriangle size={12} />
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[11px] font-semibold bg-amber-50 text-amber-600 border-amber-100">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
           경고 (Warning)
         </span>
       );
     case "NORMAL":
     default:
       return (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border text-xs font-semibold bg-emerald-500/10 text-emerald-400 border-emerald-500/20">
-          <CheckCircle size={12} />
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[11px] font-semibold bg-emerald-50 text-emerald-600 border-emerald-100">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
           정상 (Normal)
         </span>
       );

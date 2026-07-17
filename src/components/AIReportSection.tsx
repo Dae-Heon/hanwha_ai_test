@@ -137,27 +137,27 @@ export const AIReportSection: React.FC<AIReportSectionProps> = ({
   };
 
   return (
-    <div className="bg-gradient-to-br from-slate-800 to-slate-900 text-slate-100 rounded-xl border border-slate-700 border-l-4 border-l-blue-500 p-6 shadow-lg flex flex-col h-[520px]">
+    <div className="bg-white text-slate-800 rounded-2xl border border-slate-200 border-l-4 border-l-hanwha-orange p-6 shadow-xs flex flex-col h-[520px]">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-slate-700/80 pb-4 mb-4 shrink-0">
+      <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4 shrink-0">
         <div className="flex items-center gap-2.5">
           <div className="bg-hanwha-orange/10 text-hanwha-orange p-2 rounded-lg border border-hanwha-orange/20">
             <Sparkles size={18} className="animate-pulse" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-white">AI 위기분석 및 메일 초안</h3>
-            <p className="text-[11px] text-slate-400">결품 데이터를 심층 분석하여 즉각적인 조치 시나리오를 작성합니다.</p>
+            <h3 className="text-sm font-bold text-slate-900">AI 위기분석 및 메일 초안</h3>
+            <p className="text-[11px] text-slate-500 font-medium">결품 데이터를 심층 분석하여 즉각적인 조치 시나리오를 작성합니다.</p>
           </div>
         </div>
 
         {reportText && (
           <button
             onClick={copyToClipboard}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-slate-800 text-slate-300 hover:text-white rounded-lg hover:bg-slate-700 transition-all border border-slate-700 cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-slate-100 text-slate-700 hover:text-slate-900 rounded-lg hover:bg-slate-200 transition-all border border-slate-200 cursor-pointer font-medium"
           >
             {isCopied ? (
               <>
-                <Check size={13} className="text-emerald-400" />
+                <Check size={13} className="text-emerald-600" />
                 복사 완료
               </>
             ) : (
@@ -174,19 +174,19 @@ export const AIReportSection: React.FC<AIReportSectionProps> = ({
       <div className="flex-1 min-h-0 flex flex-col justify-between">
         {!reportText ? (
           <div className="flex-1 flex flex-col items-center justify-center text-center p-6 space-y-4">
-            <div className="bg-slate-800/80 p-4 rounded-full border border-slate-700">
+            <div className="bg-slate-50 p-4 rounded-full border border-slate-200">
               <Mail size={32} className="text-slate-400" />
             </div>
             <div className="max-w-xs space-y-1.5">
-              <p className="text-sm font-medium text-white">실시간 AI 위기관리 비서 가동</p>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-sm font-bold text-slate-900">실시간 AI 위기관리 비서 가동</p>
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">
                 현재 분석된 결품 데이터를 토대로 ERP 대조 요약 및 한화 보안 기준을 준수한 고품격 구매처 이메일 초안을 단 3초 만에 받아보세요.
               </p>
             </div>
             <button
               onClick={generateReport}
               disabled={loading}
-              className="w-full max-w-xs py-2 px-4 bg-hanwha-orange hover:bg-hanwha-orange/90 text-white rounded-lg font-semibold text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-orange-950/40 disabled:opacity-50 cursor-pointer"
+              className="w-full max-w-xs py-2 px-4 bg-hanwha-orange hover:bg-hanwha-orange/90 text-white rounded-lg font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-orange-500/10 disabled:opacity-50 cursor-pointer"
             >
               {loading ? (
                 <>
@@ -204,40 +204,40 @@ export const AIReportSection: React.FC<AIReportSectionProps> = ({
         ) : (
           <div className="flex-1 flex flex-col min-h-0">
             {apiWarning && (
-              <div className="mb-3 bg-slate-900/80 border border-slate-700 p-2.5 rounded-lg flex items-start gap-2">
-                <AlertCircle size={14} className="text-amber-500 mt-0.5 shrink-0" />
-                <p className="text-[10px] text-slate-300 leading-normal">{apiWarning}</p>
+              <div className="mb-3 bg-amber-50 border border-amber-100 p-2.5 rounded-lg flex items-start gap-2">
+                <AlertCircle size={14} className="text-amber-600 mt-0.5 shrink-0" />
+                <p className="text-[10px] text-amber-800 leading-normal font-medium">{apiWarning}</p>
               </div>
             )}
 
-            <div className="flex-1 overflow-y-auto bg-slate-950 rounded-lg p-4 border border-slate-800 font-sans text-xs leading-relaxed space-y-4 selection:bg-orange-800 selection:text-white">
+            <div className="flex-1 overflow-y-auto bg-slate-50 rounded-lg p-4 border border-slate-200 font-sans text-xs leading-relaxed space-y-4 selection:bg-orange-100 selection:text-orange-900">
               {/* Simple Custom Markdown Renderer inside pre-formatted blocks */}
-              <div className="whitespace-pre-wrap text-slate-300 space-y-3">
+              <div className="whitespace-pre-wrap text-slate-700 space-y-3 font-medium">
                 {reportText.split("\n").map((line, idx) => {
                   if (line.startsWith("###")) {
                     return (
-                      <h4 key={idx} className="text-sm font-semibold text-white border-b border-slate-800 pb-1 pt-2">
+                      <h4 key={idx} className="text-xs font-bold text-slate-900 border-b border-slate-200 pb-1 pt-2 uppercase tracking-wide">
                         {line.replace("###", "").trim()}
                       </h4>
                     );
                   }
                   if (line.startsWith("####")) {
                     return (
-                      <h5 key={idx} className="text-xs font-semibold text-orange-400 pt-1">
+                      <h5 key={idx} className="text-xs font-bold text-hanwha-orange pt-1">
                         {line.replace("####", "").trim()}
                       </h5>
                     );
                   }
                   if (line.startsWith("* **")) {
                     return (
-                      <div key={idx} className="pl-2">
-                        • <span className="font-semibold text-slate-100">{line.replace("* **", "").replace("**", "").trim()}</span>
+                      <div key={idx} className="pl-2 text-slate-700 font-medium">
+                        • <span className="font-bold text-slate-900">{line.replace("* **", "").replace("**", "").trim()}</span>
                       </div>
                     );
                   }
                   if (line.startsWith("* ")) {
                     return (
-                      <div key={idx} className="pl-2">
+                      <div key={idx} className="pl-2 text-slate-600">
                         • {line.replace("* ", "").trim()}
                       </div>
                     );
@@ -246,12 +246,12 @@ export const AIReportSection: React.FC<AIReportSectionProps> = ({
                     // Split and bold mid-sentence parts
                     const parts = line.split("**");
                     return (
-                      <p key={idx}>
-                        {parts.map((p, pIdx) => pIdx % 2 === 1 ? <strong key={pIdx} className="text-white font-semibold">{p}</strong> : p)}
+                      <p key={idx} className="text-slate-700">
+                        {parts.map((p, pIdx) => pIdx % 2 === 1 ? <strong key={pIdx} className="text-slate-900 font-bold">{p}</strong> : p)}
                       </p>
                     );
                   }
-                  return <p key={idx}>{line}</p>;
+                  return <p key={idx} className="text-slate-600">{line}</p>;
                 })}
               </div>
             </div>
@@ -261,7 +261,7 @@ export const AIReportSection: React.FC<AIReportSectionProps> = ({
               <button
                 onClick={generateReport}
                 disabled={loading}
-                className="w-full py-2 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                className="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
                 {loading ? (
                   <>

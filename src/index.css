@@ -11,21 +11,50 @@
 }
 
 body {
-  background-color: #0f172a;
-  color: #f8fafc;
+  background-color: #fcfdfe;
+  color: #1e293b;
   font-family: var(--font-sans);
 }
 
-/* Custom scrollbar for military console vibe */
+/* Technical grid patterns for precision aerospace feeling */
+.tech-grid {
+  background-image: linear-gradient(rgba(243, 115, 33, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(243, 115, 33, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.tech-dots {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(243, 115, 33, 0.08);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(243, 115, 33, 0.08), 
+              0 1px 3px rgba(243, 115, 33, 0.05);
+  border-color: rgba(243, 115, 33, 0.2);
+}
+
+/* Custom scrollbar for modern premium vibe */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #cbd5e1;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {

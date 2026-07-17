@@ -1,0 +1,6 @@
+{
+  "name": "Shortage Guard AI",
+  "description": "한화에어로스페이스 자재 수급 위기관리 자동화 웹앱. 생산 계획과 자재 입고 현황 데이터를 인공지능 기반으로 매핑하여 결품(Shortage) 위기를 선제 분석하고 차단합니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
